@@ -1,0 +1,374 @@
+/* ============================================================
+   SWARNA PALACE — Contact Page Styles
+   ============================================================ */
+
+/* --- Contact Header --- */
+.contact-header {
+    min-height: 50vh;
+    background: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--gutter);
+}
+
+.contact-header__content {
+    width: min(100%, 64rem);
+    margin: 0 auto;
+}
+
+.contact-header__title {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 7vw, 8rem);
+    letter-spacing: var(--tracking-tight);
+    line-height: 0.94;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-wrap: balance;
+    max-width: 12ch;
+    margin: 0 auto;
+}
+
+.contact-header__title-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.contact-header__title-char {
+    display: inline-block;
+}
+
+.contact-header__sub {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 1rem;
+}
+
+/* --- Contact Layout --- */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 52fr 48fr;
+    min-height: 60vh;
+}
+
+.contact-form__side {
+    background: var(--bg-light);
+    padding: clamp(3rem, 6vw, 6rem) var(--gutter);
+}
+
+.contact-info__side {
+    background: var(--bg-dark);
+    padding: clamp(3rem, 6vw, 6rem) var(--gutter);
+}
+
+.contact-form__heading,
+.contact-info__heading {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: 0.5rem;
+}
+
+.contact-form__heading {
+    color: var(--text-dark);
+}
+
+.contact-info__heading {
+    color: var(--text-primary);
+}
+
+.contact-form__intro {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.contact-info__intro {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+/* --- Form Fields --- */
+.form-field {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+    padding: 1rem 0 0.5rem;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(19, 25, 54, 0.15);
+    color: var(--text-dark);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color var(--dur-fast);
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-field select {
+    cursor: pointer;
+}
+
+.form-field label {
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: transform var(--dur-fast) var(--ease-primary),
+        font-size var(--dur-fast),
+        color var(--dur-fast);
+    pointer-events: none;
+    transform-origin: left;
+}
+
+/* Float label up on focus or when input has value */
+.form-field input:focus+label,
+.form-field input:not(:placeholder-shown)+label,
+.form-field textarea:focus+label,
+.form-field textarea:not(:placeholder-shown)+label,
+.form-field select:focus+label,
+.form-field select:valid+label {
+    transform: translateY(-1.2rem);
+    font-size: 0.55rem;
+    color: var(--accent-gold);
+}
+
+/* Bottom line draw-in on focus */
+.form-field__line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-mid) var(--ease-primary);
+}
+
+.form-field input:focus~.form-field__line,
+.form-field textarea:focus~.form-field__line,
+.form-field select:focus~.form-field__line {
+    transform: scaleX(1);
+}
+
+/* Error state */
+.form-field input.is-invalid,
+.form-field textarea.is-invalid {
+    border-bottom-color: #c0392b;
+}
+
+/* Submit button */
+.contact-form__submit {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Success state */
+.contact-form__success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+    gap: 1.5rem;
+}
+
+.contact-form__success-icon {
+    opacity: 0;
+}
+
+.contact-form__check-path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+}
+
+.contact-form__success-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--text-dark);
+}
+
+/* --- Contact Info Blocks --- */
+.contact-info__blocks {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info__block {
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(232, 232, 232, 0.1);
+}
+
+.contact-info__label {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.contact-info__value {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--text-primary);
+    display: block;
+}
+
+.contact-info__value--link {
+    text-decoration: none;
+    transition: color var(--dur-fast);
+}
+
+.contact-info__value--link:hover {
+    color: var(--accent-gold);
+}
+
+.contact-info__value--address {
+    margin: 0;
+    max-width: 34ch;
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    line-height: 1.75;
+    font-style: normal;
+}
+
+.contact-info__value--large {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    letter-spacing: var(--tracking-tight);
+}
+
+.contact-info__footnote {
+    margin-top: 2rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--accent-gold);
+}
+
+/* --- FAQ --- */
+.faq {
+    background: var(--bg-light);
+    padding: clamp(4rem, 8vw, 8rem) var(--gutter);
+}
+
+.faq__heading {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-dark);
+    margin-bottom: clamp(2rem, 4vw, 4rem);
+}
+
+.faq-item {
+    border-top: 1px solid rgba(19, 25, 54, 0.15);
+}
+
+.faq-item:last-child {
+    border-bottom: 1px solid rgba(19, 25, 54, 0.15);
+}
+
+.faq-item__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.25rem 0;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+}
+
+.faq-item__icon {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    transition: transform var(--dur-fast) var(--ease-primary);
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+.faq-item--open .faq-item__icon {
+    transform: rotate(45deg);
+}
+
+.faq-item__answer {
+    overflow: hidden;
+    height: 0;
+}
+
+.faq-item__answer-inner {
+    padding: 0 0 1.25rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 600px;
+}
+
+@media (max-width: 991px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form__side,
+    .contact-info__side {
+        padding: clamp(2rem, 6vw, 3.25rem) var(--gutter);
+    }
+
+    .contact-info__value--large {
+        font-size: clamp(1.25rem, 7vw, 2rem);
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-header {
+        min-height: 48vh;
+        padding-top: calc(var(--nav-height) + 1.5rem);
+        padding-left: clamp(1rem, 5vw, 1.25rem);
+        padding-right: clamp(1rem, 5vw, 1.25rem);
+    }
+
+    .contact-header__title {
+        font-size: clamp(2.55rem, 12.5vw, 3.6rem);
+        max-width: 8.8ch;
+        line-height: 0.9;
+        letter-spacing: -0.01em;
+    }
+
+    .contact-form__intro,
+    .contact-info__intro {
+        margin-bottom: 1.75rem;
+    }
+
+    .contact-header__sub {
+        font-size: 0.66rem;
+        line-height: 1.65;
+        max-width: 34ch;
+        margin: 1rem auto 0;
+    }
+}

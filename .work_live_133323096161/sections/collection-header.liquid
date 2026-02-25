@@ -1,0 +1,43 @@
+<section class="collection-header" data-section="collection-header">
+  <div class="collection-header__image-wrap">
+    {%- if section.settings.image != blank -%}
+      {% render 'image-responsive',
+        image: section.settings.image,
+        class: 'collection-header__image',
+        sizes: '100vw',
+        loading: 'eager'
+      %}
+    {%- elsif collection.image -%}
+      {% render 'image-responsive',
+        image: collection.image,
+        class: 'collection-header__image',
+        sizes: '100vw',
+        loading: 'eager'
+      %}
+    {%- else -%}
+      {% render 'jewelry-fallback-image', class: 'collection-header__image', index: 2, loading: 'eager' %}
+    {%- endif -%}
+  </div>
+  <div class="collection-header__content">
+    <h1 class="collection-header__title">
+      <span class="mask-inner">{{ section.settings.heading | default: collection.title }}</span>
+    </h1>
+    {%- if section.settings.subtitle != blank -%}
+      <p class="collection-header__subtitle">{{ section.settings.subtitle }}</p>
+    {%- elsif collection.description != blank -%}
+      <p class="collection-header__subtitle">{{ collection.description | strip_html | truncate: 120 }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Header",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Header Image" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle" }
+  ],
+  "presets": [{ "name": "Collection Header" }]
+}
+{% endschema %}

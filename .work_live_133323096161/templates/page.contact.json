@@ -1,0 +1,74 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "contact-header": {
+            "type": "contact-header",
+            "settings": {}
+        },
+        "contact-form": {
+            "type": "contact-form",
+            "settings": {}
+        },
+        "contact-faq": {
+            "type": "contact-faq",
+            "settings": {},
+            "blocks": {
+                "faq_1": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "What is your shipping policy?",
+                        "answer": "We ship worldwide via DHL Express. Domestic orders typically arrive within 2-3 business days, while international orders take 5-7 business days. All shipments are insured and require a signature upon delivery."
+                    }
+                },
+                "faq_2": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "Do you offer custom sizing?",
+                        "answer": "Yes. Select pieces are available in custom sizes. Contact us with your requirements and we'll guide you through the bespoke process."
+                    }
+                },
+                "faq_3": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "How do I care for my silver jewelry?",
+                        "answer": "Store pieces individually in the dust bag provided. Polish with a microfiber cloth. Avoid prolonged exposure to water, perfume, and chemicals. Professional cleaning recommended once a year."
+                    }
+                },
+                "faq_4": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "Can I return an item?",
+                        "answer": "We offer 14-day returns on unworn items with original tags and packaging. Custom and sale items are final sale."
+                    }
+                },
+                "faq_5": {
+                    "type": "faq",
+                    "settings": {
+                        "question": "Is the packaging eco-friendly?",
+                        "answer": "All packaging is made from recyclable and FSC-certified materials. We use zero single-use plastics. Our dust bags are organic cotton."
+                    }
+                }
+            },
+            "block_order": [
+                "faq_1",
+                "faq_2",
+                "faq_3",
+                "faq_4",
+                "faq_5"
+            ]
+        }
+    },
+    "order": [
+        "contact-header",
+        "contact-form",
+        "contact-faq"
+    ]
+}

@@ -1,0 +1,241 @@
+/* ============================================================
+   SWARNA PALACE — Design System
+   ============================================================ */
+
+/* --- Custom Properties --- */
+:root {
+  /* Backgrounds */
+  --bg-dark: #131936;
+  --bg-light: #F0F0F0;
+  --bg-darker: #0D1029;
+
+  /* Accents */
+  --accent-gold: #C9A84C;
+
+  /* UI */
+  --ui-silver: #E8E8E8;
+  --text-muted: #9A9AAD;
+  --text-primary: #F0F0F0;
+  --text-dark: #131936;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Inter', sans-serif;
+  --tracking-tight: -0.04em;
+  --tracking-wide: 0.12em;
+
+  /* Easing */
+  --ease-primary: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+
+  /* Durations */
+  --dur-fast: 300ms;
+  --dur-mid: 500ms;
+  --dur-slow: 700ms;
+
+  /* Layout */
+  --nav-height: 72px;
+  --container-max: 1440px;
+  --gutter: clamp(24px, 4vw, 80px);
+
+  /* Component-specific */
+  --card-radius: 0px;
+  --chip-radius: 999px;
+  --btn-radius: 0px;
+}
+
+/* --- CSS Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-dark);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#sp-main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* --- @font-face — Cormorant Garamond (Variable) --- */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('CormorantGaramond-Variable.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('CormorantGaramond-Italic-Variable.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- @font-face — Inter (Variable) --- */
+@font-face {
+  font-family: 'Inter';
+  src: url('Inter-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Typography Hierarchy --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.05;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 7rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2vw, 2rem);
+}
+
+h5 {
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+h6 {
+  font-size: clamp(0.875rem, 1vw, 1.125rem);
+}
+
+p {
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 1vw, 1rem);
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* --- Global Utilities --- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* --- Selection --- */
+::selection {
+  background: var(--accent-gold);
+  color: var(--text-dark);
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ui-silver);
+}
+
+@media (max-width: 991px) {
+  :root {
+    --gutter: clamp(14px, 4vw, 20px);
+    --nav-height: 64px;
+  }
+}

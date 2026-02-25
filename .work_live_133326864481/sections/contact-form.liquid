@@ -1,0 +1,94 @@
+﻿<section class="contact-layout" data-section="contact-form">
+  {%- assign contact_phone = section.settings.phone | default: '+91 81080 71223' -%}
+  {%- assign contact_phone_href = contact_phone | strip | remove: ' ' | remove: '-' | remove: '(' | remove: ')' -%}
+  {%- assign contact_address = section.settings.address | default: 'BLDG NO 3, SKYLINE OASIS, Shop 5, Premier Road, Khalai Village, Vidyavihar West, Vidyavihar, Mumbai, Maharashtra 400086' -%}
+  {%- assign contact_map_url = section.settings.map_url | default: 'https://share.google/Ex537zO4dbWvjtw6p' -%}
+
+  {%- comment -%} Left Side - Form {%- endcomment -%}
+  <div class="contact-form__side">
+    <h2 class="contact-form__heading">Send a Message</h2>
+    <p class="contact-form__intro">We typically respond within 24 hours.</p>
+
+    {%- form 'contact', id: 'contact-form' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="contact-form__success">
+          <svg class="contact-form__success-icon" viewBox="0 0 60 60" width="60" height="60">
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
+            <polyline class="contact-form__check-path" points="18 32 26 40 42 22" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="contact-form__success-text">Your message was sent.</p>
+        </div>
+      {%- else -%}
+        <div class="form-field">
+          <input type="text" name="contact[name]" id="contact-name" placeholder=" " required>
+          <label for="contact-name">FULL NAME</label>
+          <span class="form-field__line"></span>
+        </div>
+
+        <div class="form-field">
+          <input type="email" name="contact[email]" id="contact-email" placeholder=" " required>
+          <label for="contact-email">EMAIL ADDRESS</label>
+          <span class="form-field__line"></span>
+        </div>
+
+        <div class="form-field">
+          <select name="contact[subject]" id="contact-subject" required>
+            <option value="" disabled selected></option>
+            <option value="Order Inquiry">Order Inquiry</option>
+            <option value="Custom Request">Custom Request</option>
+            <option value="Wholesale">Wholesale</option>
+            <option value="Press">Press</option>
+            <option value="Other">Other</option>
+          </select>
+          <label for="contact-subject">SUBJECT</label>
+          <span class="form-field__line"></span>
+        </div>
+
+        <div class="form-field">
+          <textarea name="contact[body]" id="contact-message" placeholder=" " rows="4" required></textarea>
+          <label for="contact-message">MESSAGE</label>
+          <span class="form-field__line"></span>
+        </div>
+
+        <button type="submit" class="btn btn--secondary contact-form__submit">
+          SEND MESSAGE &rarr;
+        </button>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+
+  {%- comment -%} Right Side - Info {%- endcomment -%}
+  <div class="contact-info__side">
+    <h2 class="contact-info__heading">Find Us</h2>
+    <p class="contact-info__intro">Reach us directly for orders, visits, and support.</p>
+
+    <div class="contact-info__blocks">
+      <div class="contact-info__block">
+        <span class="contact-info__label">Contact</span>
+        <a href="tel:{{ contact_phone_href }}" class="contact-info__value contact-info__value--link">{{ contact_phone }}</a>
+      </div>
+      <div class="contact-info__block">
+        <span class="contact-info__label">Address</span>
+        <address class="contact-info__value contact-info__value--address">{{ contact_address }}</address>
+      </div>
+      <div class="contact-info__block">
+        <span class="contact-info__label">Map</span>
+        <a href="{{ contact_map_url }}" class="contact-info__value contact-info__value--link" target="_blank" rel="noopener">Open in Google Maps</a>
+      </div>
+    </div>
+
+    <p class="contact-info__footnote"><em>Mumbai, Maharashtra</em></p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [
+    { "type": "text", "id": "phone", "label": "Phone Number", "default": "+91 81080 71223" },
+    { "type": "textarea", "id": "address", "label": "Address", "default": "BLDG NO 3, SKYLINE OASIS, Shop 5, Premier Road, Khalai Village, Vidyavihar West, Vidyavihar, Mumbai, Maharashtra 400086" },
+    { "type": "url", "id": "map_url", "label": "Map URL" }
+  ],
+  "presets": [{ "name": "Contact Form" }]
+}
+{% endschema %}

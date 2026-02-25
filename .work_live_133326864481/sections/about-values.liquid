@@ -1,0 +1,43 @@
+<section class="values" data-section="about-values">
+  <div class="values__container container">
+    <h2 class="values__heading">Our Values</h2>
+    <div class="values__grid">
+      {%- for block in section.blocks -%}
+        <div class="values__col" {{ block.shopify_attributes }}>
+          <span class="values__numeral">{{ block.settings.numeral | default: forloop.index | prepend: '0' }}</span>
+          <h3 class="values__title">{{ block.settings.title }}</h3>
+          <p class="values__desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Values",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "numeral", "label": "Numeral", "default": "01" },
+        { "type": "text", "id": "title", "label": "Value Title", "default": "Sustainable Sourcing" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Every piece starts with ethically sourced silver." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Values",
+      "blocks": [
+        { "type": "value", "settings": { "numeral": "01", "title": "Sustainable Sourcing", "description": "Radical transparency meets artisan silver sourcing. Every piece tells a traceable story from mine to maker." } },
+        { "type": "value", "settings": { "numeral": "02", "title": "Artisan Craft", "description": "Jaipur's finest artisans. 200+ hours perfecting every technique, hand-finishing for imperfect perfection." } },
+        { "type": "value", "settings": { "numeral": "03", "title": "Radical Transparency", "description": "Full cost transparency. Every supply chain step visible, every single piece traceable and authentic." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

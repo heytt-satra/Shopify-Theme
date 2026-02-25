@@ -1,0 +1,72 @@
+<section class="social-proof" data-section="home-social-proof">
+  <div class="social-proof__container">
+    <div class="social-proof__quotes-wrap">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <div class="social-proof__quote{% if forloop.first %} social-proof__quote--active{% endif %}"
+               data-quote-index="{{ forloop.index0 }}"
+               {{ block.shopify_attributes }}>
+            <p class="social-proof__quote-text">"{{ block.settings.quote }}"</p>
+            <span class="social-proof__attribution">— {{ block.settings.attribution }}</span>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="social-proof__quote social-proof__quote--active" data-quote-index="0">
+          <p class="social-proof__quote-text">"The jewelry brand defining the new era of cold luxury. Unapologetic, sharp, and essential."</p>
+          <span class="social-proof__attribution">— VOGUE INDIA</span>
+        </div>
+        <div class="social-proof__quote" data-quote-index="1">
+          <p class="social-proof__quote-text">"Swarna Palace is where heritage meets the future. Silver, reimagined."</p>
+          <span class="social-proof__attribution">— GQ INDIA</span>
+        </div>
+        <div class="social-proof__quote" data-quote-index="2">
+          <p class="social-proof__quote-text">"Bold, raw, and undeniably premium. A brand that speaks without shouting."</p>
+          <span class="social-proof__attribution">— ELLE</span>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="social-proof__dots">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <button
+            class="social-proof__dot{% if forloop.first %} social-proof__dot--active{% endif %}"
+            data-dot-index="{{ forloop.index0 }}"
+            aria-label="Quote {{ forloop.index }}"
+            type="button"
+          ></button>
+        {%- endfor -%}
+      {%- else -%}
+        <button class="social-proof__dot social-proof__dot--active" data-dot-index="0" aria-label="Quote 1" type="button"></button>
+        <button class="social-proof__dot" data-dot-index="1" aria-label="Quote 2" type="button"></button>
+        <button class="social-proof__dot" data-dot-index="2" aria-label="Quote 3" type="button"></button>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Social Proof",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "The jewelry brand defining the new era of cold luxury. Unapologetic, sharp, and essential." },
+        { "type": "text", "id": "attribution", "label": "Attribution", "default": "VOGUE INDIA" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social Proof",
+      "blocks": [
+        { "type": "quote", "settings": { "quote": "The jewelry brand defining the new era of cold luxury. Unapologetic, sharp, and essential.", "attribution": "VOGUE INDIA" } },
+        { "type": "quote", "settings": { "quote": "Swarna Palace is where heritage meets the future. Silver, reimagined.", "attribution": "GQ INDIA" } },
+        { "type": "quote", "settings": { "quote": "Bold, raw, and undeniably premium. A brand that speaks without shouting.", "attribution": "ELLE" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

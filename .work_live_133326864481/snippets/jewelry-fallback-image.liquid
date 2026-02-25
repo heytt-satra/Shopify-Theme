@@ -1,0 +1,20 @@
+{%- assign fallback_index = index | default: 1 | plus: 0 -%}
+{%- assign fallback_number = fallback_index | modulo: 12 -%}
+{%- if fallback_number == 0 -%}
+  {%- assign fallback_number = 12 -%}
+{%- endif -%}
+
+{%- capture fallback_filename -%}
+dummy-jewelry-{% if fallback_number < 10 %}0{% endif %}{{ fallback_number }}.jpg
+{%- endcapture -%}
+
+<img
+  class="{{ class }}"
+  src="{{ fallback_filename | strip | asset_url }}"
+  alt="{{ alt | default: 'Jewelry placeholder image' }}"
+  width="{{ width | default: 1600 }}"
+  height="{{ height | default: 2000 }}"
+  loading="{{ loading | default: 'lazy' }}"
+  {% if fetchpriority != blank %}fetchpriority="{{ fetchpriority }}"{% endif %}
+  decoding="async"
+>

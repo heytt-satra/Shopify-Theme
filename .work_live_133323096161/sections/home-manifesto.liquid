@@ -1,0 +1,42 @@
+<section class="manifesto" data-section="home-manifesto">
+  <div class="manifesto__bg-pattern"></div>
+  <div class="manifesto__lines">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        <div class="manifesto__line" {{ block.shopify_attributes }}>
+          {{ block.settings.text }}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="manifesto__line">We don't do pretty.</div>
+      <div class="manifesto__line">We do permanent.</div>
+      <div class="manifesto__line">Luxury is cold.</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Manifesto",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "line",
+      "name": "Manifesto Line",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Line", "default": "We don't do pretty." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Manifesto",
+      "blocks": [
+        { "type": "line", "settings": { "text": "We don't do pretty." } },
+        { "type": "line", "settings": { "text": "We do permanent." } },
+        { "type": "line", "settings": { "text": "Luxury is cold." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

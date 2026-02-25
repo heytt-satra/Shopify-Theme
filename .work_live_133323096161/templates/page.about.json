@@ -1,0 +1,124 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "about-hero": {
+            "type": "about-hero",
+            "settings": {},
+            "blocks": {
+                "line_1": {
+                    "type": "heading_line",
+                    "settings": {
+                        "text": "Born from"
+                    }
+                },
+                "line_2": {
+                    "type": "heading_line",
+                    "settings": {
+                        "text": "Silver."
+                    }
+                },
+                "line_3": {
+                    "type": "heading_line",
+                    "settings": {
+                        "text": "Built for Now."
+                    }
+                }
+            },
+            "block_order": [
+                "line_1",
+                "line_2",
+                "line_3"
+            ]
+        },
+        "about-brand-statement": {
+            "type": "about-brand-statement",
+            "settings": {}
+        },
+        "about-timeline": {
+            "type": "about-timeline",
+            "settings": {},
+            "blocks": {
+                "ms_1": {
+                    "type": "milestone",
+                    "settings": {
+                        "year": "2020",
+                        "description": "The story begins in a Jaipur atelier, where a single collection meets obsessive design."
+                    }
+                },
+                "ms_2": {
+                    "type": "milestone",
+                    "settings": {
+                        "year": "2021",
+                        "description": "First digital-first launch. A curated generation discovers silver worth wearing."
+                    }
+                },
+                "ms_3": {
+                    "type": "milestone",
+                    "settings": {
+                        "year": "2022",
+                        "description": "Global expansion. The Serpent Collection drops and sells out in 48 hours."
+                    }
+                }
+            },
+            "block_order": [
+                "ms_1",
+                "ms_2",
+                "ms_3"
+            ]
+        },
+        "about-values": {
+            "type": "about-values",
+            "settings": {},
+            "blocks": {
+                "val_1": {
+                    "type": "value",
+                    "settings": {
+                        "numeral": "01",
+                        "title": "Sustainable Sourcing",
+                        "description": "Radical transparency meets artisan silver sourcing. Every piece tells a traceable story from mine to maker."
+                    }
+                },
+                "val_2": {
+                    "type": "value",
+                    "settings": {
+                        "numeral": "02",
+                        "title": "Artisan Craft",
+                        "description": "Jaipur's finest artisans. 200+ hours perfecting every technique, hand-finishing for imperfect perfection."
+                    }
+                },
+                "val_3": {
+                    "type": "value",
+                    "settings": {
+                        "numeral": "03",
+                        "title": "Radical Transparency",
+                        "description": "Full cost transparency. Every supply chain step visible, every single piece traceable and authentic."
+                    }
+                }
+            },
+            "block_order": [
+                "val_1",
+                "val_2",
+                "val_3"
+            ]
+        },
+        "about-campaign": {
+            "type": "about-campaign",
+            "settings": {}
+        }
+    },
+    "order": [
+        "about-hero",
+        "about-brand-statement",
+        "about-timeline",
+        "about-values",
+        "about-campaign"
+    ]
+}

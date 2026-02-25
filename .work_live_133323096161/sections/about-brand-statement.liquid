@@ -1,0 +1,21 @@
+<section class="brand-statement" data-section="about-brand-statement">
+  <div class="brand-statement__lines">
+    <div class="brand-statement__line">{{ section.settings.line_1 | default: "We don't chase trends." }}</div>
+    <div class="brand-statement__line">{{ section.settings.line_2 | default: "We forge them in silver." }}</div>
+    <div class="brand-statement__line">{{ section.settings.line_3 | default: "A legacy of craft." }}</div>
+    <div class="brand-statement__line">{{ section.settings.line_4 | default: "A future of style." }}</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Statement",
+  "settings": [
+    { "type": "text", "id": "line_1", "label": "Line 1", "default": "We don't chase trends." },
+    { "type": "text", "id": "line_2", "label": "Line 2", "default": "We forge them in silver." },
+    { "type": "text", "id": "line_3", "label": "Line 3", "default": "A legacy of craft." },
+    { "type": "text", "id": "line_4", "label": "Line 4", "default": "A future of style." }
+  ],
+  "presets": [{ "name": "Brand Statement" }]
+}
+{% endschema %}

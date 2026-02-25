@@ -1,0 +1,50 @@
+<section class="campaign campaign--promise" data-section="about-campaign">
+  <div class="campaign__container container">
+    <div class="campaign__content">
+      <span class="campaign__label">{{ section.settings.label | default: 'OUR PROMISE' }}</span>
+      <h2 class="campaign__title">{{ section.settings.title | default: 'Our Promise' }}</h2>
+      <p class="campaign__body">
+        {{ section.settings.paragraph_1 | default: 'Our collection is designed for everyday wear, crafted with minimalistic designs that effortlessly transition from day to night, from casual outings to special occasions. Each piece in our collection is meticulously crafted by skilled artisans who have honed their craft over generations. Every detail is thoughtfully executed to ensure the highest quality and craftsmanship.' }}
+      </p>
+      <p class="campaign__body">
+        {{ section.settings.paragraph_2 | default: "But our commitment to excellence goes beyond just aesthetics. We are dedicated to ethical sourcing and sustainable practices, ensuring that our jewellery not only looks good but also feels good knowing it's been crafted with reverence for both people and the planet." }}
+      </p>
+    </div>
+
+    <div class="campaign__image-wrap">
+      {%- if section.settings.image != blank -%}
+        {% render 'image-responsive',
+          image: section.settings.image,
+          class: 'campaign__image',
+          sizes: '(max-width: 991px) 100vw, 50vw'
+        %}
+      {%- else -%}
+        {% render 'jewelry-fallback-image', class: 'campaign__image', index: 6, loading: 'lazy' %}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Promise",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Promise Image" },
+    { "type": "text", "id": "label", "label": "Label", "default": "OUR PROMISE" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Our Promise" },
+    {
+      "type": "textarea",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "Our collection is designed for everyday wear, crafted with minimalistic designs that effortlessly transition from day to night, from casual outings to special occasions. Each piece in our collection is meticulously crafted by skilled artisans who have honed their craft over generations. Every detail is thoughtfully executed to ensure the highest quality and craftsmanship."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "But our commitment to excellence goes beyond just aesthetics. We are dedicated to ethical sourcing and sustainable practices, ensuring that our jewellery not only looks good but also feels good knowing it's been crafted with reverence for both people and the planet."
+    }
+  ],
+  "presets": [{ "name": "Promise" }]
+}
+{% endschema %}

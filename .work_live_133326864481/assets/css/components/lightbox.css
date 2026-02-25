@@ -1,0 +1,114 @@
+/* ============================================================
+   SWARNA PALACE — Lightbox Styles
+   ============================================================ */
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lightbox--open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.lightbox__overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-darker);
+    opacity: 0.97;
+}
+
+.lightbox__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    height: 90vh;
+}
+
+.lightbox__image {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.lightbox__close {
+    position: absolute;
+    top: clamp(1rem, 3vw, 2rem);
+    right: clamp(1rem, 3vw, 2rem);
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(232, 232, 232, 0.2);
+    border-radius: 50%;
+    color: var(--ui-silver);
+    cursor: pointer;
+    transition: all var(--dur-fast);
+}
+
+.lightbox__close:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.lightbox__close svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+}
+
+.lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(232, 232, 232, 0.2);
+    color: var(--ui-silver);
+    cursor: pointer;
+    transition: all var(--dur-fast);
+}
+
+.lightbox__nav:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.lightbox__nav svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+}
+
+.lightbox__nav--prev {
+    left: clamp(1rem, 3vw, 2rem);
+}
+
+.lightbox__nav--next {
+    right: clamp(1rem, 3vw, 2rem);
+}

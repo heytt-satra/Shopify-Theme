@@ -1,0 +1,211 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "home-hero": {
+      "type": "home-hero",
+      "blocks": {
+        "heading_1": {
+          "type": "heading_line",
+          "settings": {
+            "text": "Swarna Palace"
+          }
+        }
+      },
+      "block_order": [
+        "heading_1"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Gemini_Generated_Image_ff13m0ff13m0ff13.png",
+        "subtext": "Discover timeless elegance forged in silver. Designed for the modern muse, crafted for eternity.",
+        "cta_label": "EXPLORE COLLECTION",
+        "cta_url": "/collections/all"
+      }
+    },
+    "home-marquee": {
+      "type": "home-marquee",
+      "settings": {
+        "marquee_text": "NO EXCESS SILVER  ·  ARTISAN SILVER  ·  MADE RAW  ·  925 SILVER  ·  WEAR THE SILENCE  ·"
+      }
+    },
+    "home-featured-collections": {
+      "type": "home-featured-collections",
+      "blocks": {
+        "col_1": {
+          "type": "collection",
+          "settings": {
+            "title": "Rings",
+            "link": ""
+          }
+        },
+        "col_2": {
+          "type": "collection",
+          "settings": {
+            "title": "The Serpent Collection",
+            "link": ""
+          }
+        },
+        "col_3": {
+          "type": "collection",
+          "settings": {
+            "title": "Earrings",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "col_1",
+        "col_2",
+        "col_3"
+      ],
+      "settings": {}
+    },
+    "home-editorial-break": {
+      "type": "home-editorial-break",
+      "settings": {
+        "heading_line_1": "WEAR THE /",
+        "heading_line_2": "SILENCE",
+        "subtext": ""
+      }
+    },
+    "home-product-spots": {
+      "type": "home-product-spots",
+      "settings": {
+        "heading": "Latest Drops",
+        "collection": ""
+      }
+    },
+    "home-manifesto": {
+      "type": "home-manifesto",
+      "blocks": {
+        "line_1": {
+          "type": "line",
+          "settings": {
+            "text": "We don't do pretty."
+          }
+        },
+        "line_2": {
+          "type": "line",
+          "settings": {
+            "text": "We do permanent."
+          }
+        },
+        "line_3": {
+          "type": "line",
+          "settings": {
+            "text": "Luxury is cold."
+          }
+        }
+      },
+      "block_order": [
+        "line_1",
+        "line_2",
+        "line_3"
+      ],
+      "settings": {}
+    },
+    "home-gen-z-grid": {
+      "type": "home-gen-z-grid",
+      "blocks": {
+        "tile_1": {
+          "type": "tile",
+          "settings": {
+            "url": ""
+          }
+        },
+        "tile_2": {
+          "type": "tile",
+          "settings": {
+            "url": ""
+          }
+        },
+        "tile_3": {
+          "type": "tile",
+          "settings": {
+            "url": ""
+          }
+        },
+        "tile_4": {
+          "type": "tile",
+          "settings": {
+            "url": ""
+          }
+        },
+        "tile_5": {
+          "type": "tile",
+          "settings": {
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "tile_1",
+        "tile_2",
+        "tile_3",
+        "tile_4",
+        "tile_5"
+      ],
+      "settings": {}
+    },
+    "home-social-proof": {
+      "type": "home-social-proof",
+      "blocks": {
+        "quote_1": {
+          "type": "quote",
+          "settings": {
+            "quote": "The jewelry brand defining the new era of cold luxury. Unapologetic, sharp, and essential.",
+            "attribution": "VOGUE INDIA"
+          }
+        },
+        "quote_2": {
+          "type": "quote",
+          "settings": {
+            "quote": "Swarna Palace is where heritage meets the future. Silver, reimagined.",
+            "attribution": "GQ INDIA"
+          }
+        },
+        "quote_3": {
+          "type": "quote",
+          "settings": {
+            "quote": "Bold, raw, and undeniably premium. A brand that speaks without shouting.",
+            "attribution": "ELLE"
+          }
+        }
+      },
+      "block_order": [
+        "quote_1",
+        "quote_2",
+        "quote_3"
+      ],
+      "settings": {}
+    },
+    "home-final-cta": {
+      "type": "home-final-cta",
+      "settings": {
+        "heading": "Join the Palace",
+        "subtext": "",
+        "cta_label": "EXPLORE THE COLLECTION",
+        "cta_url": "",
+        "image": "shopify://shop_images/Untitled.png"
+      }
+    }
+  },
+  "order": [
+    "home-hero",
+    "home-marquee",
+    "home-featured-collections",
+    "home-editorial-break",
+    "home-product-spots",
+    "home-manifesto",
+    "home-gen-z-grid",
+    "home-social-proof",
+    "home-final-cta"
+  ]
+}

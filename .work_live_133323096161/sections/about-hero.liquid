@@ -1,0 +1,49 @@
+<section class="about-hero" data-section="about-hero">
+  <div class="about-hero__bg-pattern"></div>
+  <div class="about-hero__content">
+    <h1 class="about-hero__title" data-split="lines">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'heading_line' -%}
+            <span class="about-hero__title-line" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        <span class="about-hero__title-line">Born from</span>
+        <span class="about-hero__title-line">Silver.</span>
+        <span class="about-hero__title-line">Built for Now.</span>
+      {%- endif -%}
+    </h1>
+    {%- if section.settings.subtext != blank -%}
+      <p class="about-hero__sub">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Hero",
+  "settings": [
+    { "type": "text", "id": "subtext", "label": "Subtext", "default": "THE NEW STANDARD IN STYLING. A MANIFESTO OF MODERN LUXURY." }
+  ],
+  "blocks": [
+    {
+      "type": "heading_line",
+      "name": "Heading Line",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Line", "default": "Born from" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Hero",
+      "blocks": [
+        { "type": "heading_line", "settings": { "text": "Born from" } },
+        { "type": "heading_line", "settings": { "text": "Silver." } },
+        { "type": "heading_line", "settings": { "text": "Built for Now." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

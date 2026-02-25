@@ -1,0 +1,73 @@
+<section class="product-gallery" data-section="product-gallery">
+  {%- comment -%} Primary Image {%- endcomment -%}
+  <div class="product-gallery__primary" data-lightbox-trigger>
+    {%- if product.featured_image -%}
+      <img
+        class="product-gallery__image"
+        id="product-primary-image"
+        src="{{ product.featured_image | image_url: width: 1800 }}"
+        srcset="{{ product.featured_image | image_url: width: 800 }} 800w,
+                {{ product.featured_image | image_url: width: 1200 }} 1200w,
+                {{ product.featured_image | image_url: width: 1800 }} 1800w,
+                {{ product.featured_image | image_url: width: 2400 }} 2400w,
+                {{ product.featured_image | image_url: width: 3000 }} 3000w"
+        sizes="(max-width: 767px) 100vw, (max-width: 1200px) 58vw, 52vw"
+        alt="{{ product.featured_image.alt | escape | default: product.title }}"
+        width="{{ product.featured_image.width }}"
+        height="{{ product.featured_image.height }}"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      >
+    {%- else -%}
+      {% render 'jewelry-fallback-image', class: 'product-gallery__image', index: 6, loading: 'eager' %}
+    {%- endif -%}
+
+    {%- comment -%} Tag Badge {%- endcomment -%}
+    {%- if product.metafields.sp.collection_tag != blank -%}
+      <span class="product-gallery__badge">{{ product.metafields.sp.collection_tag }}</span>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Thumbnails {%- endcomment -%}
+  {%- if product.images.size > 1 -%}
+    <div class="product-gallery__thumbnails">
+      {%- for image in product.images -%}
+        <button
+          class="product-gallery__thumb{% if forloop.first %} product-gallery__thumb--active{% endif %}"
+          data-image-index="{{ forloop.index0 }}"
+          data-image-url="{{ image | image_url: width: 1800 }}"
+          data-image-url-full="{{ image | image_url: width: 3000 }}"
+          type="button"
+          aria-label="View image {{ forloop.index }}"
+        >
+          <img
+            src="{{ image | image_url: width: 220 }}"
+            alt="{{ image.alt | escape | default: product.title }}"
+            width="72"
+            height="72"
+            loading="lazy"
+            decoding="async"
+          >
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Store image URLs for lightbox {%- endcomment -%}
+  <script type="application/json" id="product-images-json">
+    [
+      {%- for image in product.images -%}
+        "{{ image | image_url: width: 3000 }}"{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Product Gallery",
+  "settings": [],
+  "presets": [{ "name": "Product Gallery" }]
+}
+{% endschema %}

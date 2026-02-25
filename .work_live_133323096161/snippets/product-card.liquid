@@ -1,0 +1,80 @@
+{%- comment -%}
+  Swarna Palace - Product Card Snippet
+  Accepts: product (product object)
+{%- endcomment -%}
+
+{%- if product != blank -%}
+  <article class="product-card" data-category="{{ product.type | handleize }}">
+    <div class="product-card__image-wrap">
+      <a href="{{ product.url }}" class="product-card__link" aria-label="{{ product.title }}">
+        {%- if product.featured_image -%}
+          <img
+            class="product-card__image product-card__image--primary"
+            src="{{ product.featured_image | image_url: width: 1200 }}"
+            srcset="{{ product.featured_image | image_url: width: 480 }} 480w,
+                    {{ product.featured_image | image_url: width: 720 }} 720w,
+                    {{ product.featured_image | image_url: width: 960 }} 960w,
+                    {{ product.featured_image | image_url: width: 1200 }} 1200w,
+                    {{ product.featured_image | image_url: width: 1600 }} 1600w,
+                    {{ product.featured_image | image_url: width: 2000 }} 2000w"
+            sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            alt="{{ product.featured_image.alt | escape | default: product.title }}"
+            width="{{ product.featured_image.width }}"
+            height="{{ product.featured_image.height }}"
+            loading="lazy"
+            decoding="async"
+          >
+        {%- else -%}
+          {% render 'jewelry-fallback-image', class: 'product-card__image product-card__image--primary', index: product.id, loading: 'lazy' %}
+        {%- endif -%}
+
+        {%- if product.images.size > 1 -%}
+          {%- assign hover_img = product.images[1] -%}
+          {%- if product.metafields.sp.hover_image != blank -%}
+            {%- assign hover_img = product.metafields.sp.hover_image -%}
+          {%- endif -%}
+          <img
+            class="product-card__image product-card__image--hover"
+            src="{{ hover_img | image_url: width: 1200 }}"
+            srcset="{{ hover_img | image_url: width: 480 }} 480w,
+                    {{ hover_img | image_url: width: 720 }} 720w,
+                    {{ hover_img | image_url: width: 960 }} 960w,
+                    {{ hover_img | image_url: width: 1200 }} 1200w,
+                    {{ hover_img | image_url: width: 1600 }} 1600w"
+            sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            alt="{{ product.title }} - alternate view"
+            width="{{ hover_img.width | default: product.featured_image.width }}"
+            height="{{ hover_img.height | default: product.featured_image.height }}"
+            loading="lazy"
+            decoding="async"
+          >
+        {%- endif -%}
+      </a>
+
+      {%- assign first_variant = product.selected_or_first_available_variant -%}
+      {%- if first_variant.available -%}
+        <button
+          class="product-card__quick-add"
+          data-variant-id="{{ first_variant.id }}"
+          type="button"
+          aria-label="Add {{ product.title }} to cart"
+        >
+          ADD TO BAG
+        </button>
+      {%- else -%}
+        <button
+          class="product-card__quick-add product-card__quick-add--soldout"
+          disabled
+          type="button"
+        >
+          SOLD OUT
+        </button>
+      {%- endif -%}
+    </div>
+
+    <div class="product-card__info">
+      <a href="{{ product.url }}" class="product-card__title">{{ product.title }}</a>
+      <span class="product-card__price">{{ first_variant.price | money }}</span>
+    </div>
+  </article>
+{%- endif -%}

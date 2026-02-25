@@ -1,0 +1,103 @@
+<section class="list-collections" data-section="list-collections-grid">
+  <header class="list-collections__hero">
+    <div class="container">
+      <span class="list-collections__eyebrow">{{ section.settings.eyebrow }}</span>
+      <h1 class="list-collections__title">{{ section.settings.heading }}</h1>
+      {%- if section.settings.subtext != blank -%}
+        <p class="list-collections__subtext">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+    </div>
+  </header>
+
+  {%- paginate collections by section.settings.products_per_page -%}
+    <div class="list-collections__body">
+      <div class="list-collections__grid container">
+        {%- assign rendered_collections = 0 -%}
+        {%- for collection in collections -%}
+          {%- unless collection.handle == 'frontpage' -%}
+            {%- assign rendered_collections = rendered_collections | plus: 1 -%}
+            <article class="list-collection-card">
+              <a href="{{ collection.url }}" class="list-collection-card__link">
+                <div class="list-collection-card__media">
+                  {%- if collection.featured_image -%}
+                    {% render 'image-responsive',
+                      image: collection.featured_image,
+                      class: 'list-collection-card__image',
+                      sizes: '(max-width: 767px) 100vw, 33vw'
+                    %}
+                  {%- else -%}
+                    {% render 'jewelry-fallback-image', class: 'list-collection-card__image', index: forloop.index, loading: 'lazy' %}
+                  {%- endif -%}
+                </div>
+                <div class="list-collection-card__content">
+                  <h2 class="list-collection-card__title">{{ collection.title }}</h2>
+                  <span class="list-collection-card__count">
+                    {{ collection.all_products_count }} product{% if collection.all_products_count != 1 %}s{% endif %}
+                  </span>
+                </div>
+              </a>
+            </article>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if rendered_collections == 0 -%}
+        <p class="list-collections__empty container">No collections available yet.</p>
+      {%- endif -%}
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="list-collections__pagination container" aria-label="Collection pagination">
+          {%- if paginate.previous -%}
+            <a href="{{ paginate.previous.url }}" class="list-collections__page-link">Previous</a>
+          {%- endif -%}
+
+          <span class="list-collections__page-status">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+
+          {%- if paginate.next -%}
+            <a href="{{ paginate.next.url }}" class="list-collections__page-link">Next</a>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+    </div>
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+{
+  "name": "Collections Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "CURATED CATEGORIES"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Product Collections"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Explore every drop and signature line in one place."
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Collections per page",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections Grid"
+    }
+  ]
+}
+{% endschema %}

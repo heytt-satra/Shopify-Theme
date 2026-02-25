@@ -1,0 +1,265 @@
+﻿<header class="nav" data-section="header">
+  {%- assign about_page_url = '' -%}
+  {%- if pages['about'] != blank -%}
+    {%- assign about_page_url = pages['about'].url -%}
+  {%- elsif pages['about-us'] != blank -%}
+    {%- assign about_page_url = pages['about-us'].url -%}
+  {%- elsif pages['our-story'] != blank -%}
+    {%- assign about_page_url = pages['our-story'].url -%}
+  {%- elsif pages['story'] != blank -%}
+    {%- assign about_page_url = pages['story'].url -%}
+  {%- elsif pages['company'] != blank -%}
+    {%- assign about_page_url = pages['company'].url -%}
+  {%- endif -%}
+  {%- assign contact_page_url = '' -%}
+  {%- if pages['contact'] != blank -%}
+    {%- assign contact_page_url = pages['contact'].url -%}
+  {%- elsif pages['contact-us'] != blank -%}
+    {%- assign contact_page_url = pages['contact-us'].url -%}
+  {%- elsif pages['get-in-touch'] != blank -%}
+    {%- assign contact_page_url = pages['get-in-touch'].url -%}
+  {%- elsif pages['support'] != blank -%}
+    {%- assign contact_page_url = pages['support'].url -%}
+  {%- endif -%}
+  {%- if contact_page_url == blank -%}
+    {%- assign contact_page_url = '/pages/contact' -%}
+  {%- endif -%}
+
+  {%- if about_page_url == blank -%}
+    {%- if contact_page_url != blank -%}
+      {%- assign about_page_url = contact_page_url -%}
+    {%- else -%}
+      {%- assign about_page_url = '/collections' -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  <div class="nav__left">
+    <a href="/" class="nav__logo nav__logo--mobile" aria-label="{{ shop.name }}">
+      {{ section.settings.logo_text | default: 'SP' }}
+    </a>
+
+    <nav class="nav__links" role="navigation" aria-label="Main navigation">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'nav_link' -%}
+            {%- assign nav_label = block.settings.label | strip | downcase -%}
+            {%- assign nav_url = block.settings.url | default: '' -%}
+
+            {%- if nav_label contains 'home' -%}
+              {%- if nav_url == blank or nav_url contains '/search' -%}
+                {%- assign nav_url = '/' -%}
+              {%- endif -%}
+            {%- elsif nav_label contains 'catalog' or nav_label contains 'shop' -%}
+              {%- if nav_url == blank or nav_url contains '/search' -%}
+                {%- assign nav_url = '/collections/all' -%}
+              {%- endif -%}
+            {%- elsif nav_label contains 'collection' -%}
+              {%- if nav_url == blank or nav_url contains '/search' -%}
+                {%- assign nav_url = '/collections' -%}
+              {%- endif -%}
+            {%- elsif nav_label contains 'about' or nav_label contains 'story' or nav_label contains 'company' or nav_label contains 'more' -%}
+              {%- if nav_url == blank or nav_url contains '/search' or nav_url == '/pages/about' or nav_url == '/pages/about-us' -%}
+                {%- assign nav_url = about_page_url -%}
+              {%- endif -%}
+            {%- elsif nav_label contains 'contact' -%}
+              {%- if nav_url == blank or nav_url contains '/search' or nav_url == '/pages/contact-us' -%}
+                {%- assign nav_url = contact_page_url -%}
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if nav_url == blank -%}
+              {%- assign nav_url = '#' -%}
+            {%- endif -%}
+
+            {%- assign nav_is_active = false -%}
+            {%- if nav_url == '/collections/all' and request.path contains '/collections/' -%}
+              {%- assign nav_is_active = true -%}
+            {%- elsif nav_url == '/collections' and request.path == '/collections' -%}
+              {%- assign nav_is_active = true -%}
+            {%- elsif request.path == nav_url -%}
+              {%- assign nav_is_active = true -%}
+            {%- endif -%}
+
+            <a
+              href="{{ nav_url }}"
+              class="nav__link{% if nav_is_active %} nav__link--active{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.label }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        <a href="/" class="nav__link{% if request.path == '/' %} nav__link--active{% endif %}">Home</a>
+        <a href="/collections/all" class="nav__link{% if request.path contains '/collections/' %} nav__link--active{% endif %}">Catalog</a>
+        <a href="{{ contact_page_url }}" class="nav__link{% if request.path == contact_page_url %} nav__link--active{% endif %}">Contact</a>
+        <a href="{{ about_page_url }}" class="nav__link{% if request.path == about_page_url %} nav__link--active{% endif %}">More</a>
+      {%- endif -%}
+    </nav>
+  </div>
+
+  <a href="/" class="nav__brand" aria-label="{{ shop.name }}">
+    {%- if section.settings.logo_image != blank -%}
+      <img
+        class="nav__brand-image"
+        src="{{ section.settings.logo_image | image_url: width: 280 }}"
+        alt="{{ shop.name }}"
+        width="280"
+        height="60"
+        loading="eager"
+      >
+    {%- else -%}
+      {{ section.settings.desktop_logo_text | default: shop.name }}
+    {%- endif -%}
+  </a>
+
+  <div class="nav__right">
+    {%- comment -%} Search Icon {%- endcomment -%}
+    <button class="nav__icon-btn" aria-label="Search" type="button">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="7"/>
+        <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+      </svg>
+    </button>
+
+    {%- comment -%} Account Icon {%- endcomment -%}
+    <a href="/account" class="nav__icon-btn" aria-label="Account">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+      </svg>
+    </a>
+
+    {%- comment -%} Cart {%- endcomment -%}
+    <a href="/cart" class="nav__cart" aria-label="Cart ({{ cart.item_count }})">
+      <span class="nav__cart-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+      </span>
+      <span class="nav__cart-label">Cart</span>
+      <span class="nav__cart-paren">(</span><span class="nav__cart-count">{{ cart.item_count }}</span><span class="nav__cart-paren">)</span>
+    </a>
+
+    {%- comment -%} Mobile Menu Toggle {%- endcomment -%}
+    <button class="nav__hamburger" aria-label="Menu" type="button">
+      <span class="nav__hamburger-line"></span>
+      <span class="nav__hamburger-line"></span>
+      <span class="nav__hamburger-line"></span>
+    </button>
+  </div>
+</header>
+
+{%- comment -%} Mobile Menu Overlay {%- endcomment -%}
+<div class="nav__mobile-menu" aria-hidden="true">
+  {%- if section.blocks.size > 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'nav_link' -%}
+        {%- assign nav_label = block.settings.label | strip | downcase -%}
+        {%- assign nav_url = block.settings.url | default: '' -%}
+
+        {%- if nav_label contains 'home' -%}
+          {%- if nav_url == blank or nav_url contains '/search' -%}
+            {%- assign nav_url = '/' -%}
+          {%- endif -%}
+        {%- elsif nav_label contains 'catalog' or nav_label contains 'shop' -%}
+          {%- if nav_url == blank or nav_url contains '/search' -%}
+            {%- assign nav_url = '/collections/all' -%}
+          {%- endif -%}
+        {%- elsif nav_label contains 'collection' -%}
+          {%- if nav_url == blank or nav_url contains '/search' -%}
+            {%- assign nav_url = '/collections' -%}
+          {%- endif -%}
+        {%- elsif nav_label contains 'about' or nav_label contains 'story' or nav_label contains 'company' or nav_label contains 'more' -%}
+          {%- if nav_url == blank or nav_url contains '/search' or nav_url == '/pages/about' or nav_url == '/pages/about-us' -%}
+            {%- assign nav_url = about_page_url -%}
+          {%- endif -%}
+        {%- elsif nav_label contains 'contact' -%}
+          {%- if nav_url == blank or nav_url contains '/search' or nav_url == '/pages/contact-us' -%}
+            {%- assign nav_url = contact_page_url -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if nav_url == blank -%}
+          {%- assign nav_url = '#' -%}
+        {%- endif -%}
+
+        <a href="{{ nav_url }}" class="nav__mobile-link">
+          {{ block.settings.label }}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
+    <a href="/" class="nav__mobile-link">Home</a>
+    <a href="/collections/all" class="nav__mobile-link">Catalog</a>
+    <a href="{{ contact_page_url }}" class="nav__mobile-link">Contact</a>
+    <a href="{{ about_page_url }}" class="nav__mobile-link">More</a>
+  {%- endif -%}
+
+  <div class="nav__mobile-footer">
+    <a href="/account" class="nav__mobile-link nav__mobile-link--small">Account</a>
+    <a href="/cart" class="nav__mobile-link nav__mobile-link--small">Cart ({{ cart.item_count }})</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "desktop_logo_text",
+      "label": "Desktop Brand Text",
+      "default": "Swarna Palace"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Mobile Logo Text",
+      "default": "SP"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_override",
+      "label": "Background Color Override"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Navigation Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Home"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header",
+      "blocks": [
+        { "type": "nav_link", "settings": { "label": "Home", "url": "/" } },
+        { "type": "nav_link", "settings": { "label": "Catalog", "url": "/collections/all" } },
+        { "type": "nav_link", "settings": { "label": "Contact", "url": "/pages/contact" } },
+        { "type": "nav_link", "settings": { "label": "More", "url": "/pages/about" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

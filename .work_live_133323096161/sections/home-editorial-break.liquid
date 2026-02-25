@@ -1,0 +1,35 @@
+<section class="editorial-break" data-section="home-editorial-break">
+  <div class="editorial-break__image-wrap">
+    {%- if section.settings.image != blank -%}
+      {% render 'image-responsive',
+        image: section.settings.image,
+        class: 'editorial-break__image',
+        sizes: '100vw'
+      %}
+    {%- else -%}
+      {% render 'jewelry-fallback-image', class: 'editorial-break__image', index: 7, loading: 'lazy' %}
+    {%- endif -%}
+  </div>
+  <div class="editorial-break__content">
+    <h2 class="editorial-break__title">
+      <span class="line--mask"><span class="line--mask__inner">{{ section.settings.heading_line_1 | default: 'WEAR THE /' }}</span></span>
+      <span class="line--mask"><span class="line--mask__inner">{{ section.settings.heading_line_2 | default: 'SILENCE' }}</span></span>
+    </h2>
+    {%- if section.settings.subtext != blank -%}
+      <p class="editorial-break__sub">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial Break",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background Image" },
+    { "type": "text", "id": "heading_line_1", "label": "Heading Line 1", "default": "WEAR THE /" },
+    { "type": "text", "id": "heading_line_2", "label": "Heading Line 2", "default": "SILENCE" },
+    { "type": "text", "id": "subtext", "label": "Subtext" }
+  ],
+  "presets": [{ "name": "Editorial Break" }]
+}
+{% endschema %}

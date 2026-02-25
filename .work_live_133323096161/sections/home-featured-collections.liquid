@@ -1,0 +1,71 @@
+<section class="featured-collections" data-section="home-featured-collections">
+  <div class="featured-collections__grid">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        <div class="collection-tile" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link | default: '#' }}" class="collection-tile__link">
+            <div class="collection-tile__image-wrap">
+              {%- if block.settings.image != blank -%}
+                {% render 'image-responsive',
+                  image: block.settings.image,
+                  class: 'collection-tile__image',
+                  sizes: '33vw'
+                %}
+              {%- else -%}
+                {% render 'jewelry-fallback-image', class: 'collection-tile__image', index: forloop.index, loading: 'lazy' %}
+              {%- endif -%}
+            </div>
+            <div class="collection-tile__overlay"></div>
+            <div class="collection-tile__content">
+              <h3 class="collection-tile__title">{{ block.settings.title | default: 'Collection' }}</h3>
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      {%- assign default_titles = 'Rings,The Serpent Collection,Earrings' | split: ',' -%}
+      {%- for title in default_titles -%}
+        <div class="collection-tile">
+          <a href="/collections" class="collection-tile__link">
+            <div class="collection-tile__image-wrap">
+              {% render 'jewelry-fallback-image', class: 'collection-tile__image', index: forloop.index, loading: 'lazy' %}
+            </div>
+            <div class="collection-tile__overlay"></div>
+            <div class="collection-tile__content">
+              <h3 class="collection-tile__title">{{ title }}</h3>
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collections",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection Tile",
+      "limit": 3,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Collection Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Collection" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collections",
+      "blocks": [
+        { "type": "collection", "settings": { "title": "Rings" } },
+        { "type": "collection", "settings": { "title": "The Serpent Collection" } },
+        { "type": "collection", "settings": { "title": "Earrings" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+<section class="gen-z-grid" data-section="home-gen-z-grid">
+  {%- if section.blocks.size > 0 -%}
+    {%- for block in section.blocks -%}
+      <div class="gen-z-grid__tile" {{ block.shopify_attributes }}>
+        {%- if block.settings.url != blank -%}
+          <a href="{{ block.settings.url }}" class="gen-z-grid__tile-link">
+        {%- endif -%}
+
+        <div class="gen-z-grid__image-wrap">
+          {%- if block.settings.image != blank -%}
+            {% render 'image-responsive',
+              image: block.settings.image,
+              class: 'gen-z-grid__image',
+              sizes: '(max-width: 767px) 50vw, 33vw'
+            %}
+          {%- else -%}
+            {% render 'jewelry-fallback-image', class: 'gen-z-grid__image', index: forloop.index, loading: 'lazy' %}
+          {%- endif -%}
+        </div>
+        <div class="gen-z-grid__overlay">
+          <span class="gen-z-grid__overlay-text">VIEW POST</span>
+        </div>
+
+        {%- if block.settings.url != blank -%}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  {%- else -%}
+    {%- for i in (1..5) -%}
+      <div class="gen-z-grid__tile">
+        <div class="gen-z-grid__image-wrap">
+          {% render 'jewelry-fallback-image', class: 'gen-z-grid__image', index: i, loading: 'lazy' %}
+        </div>
+        <div class="gen-z-grid__overlay">
+          <span class="gen-z-grid__overlay-text">VIEW POST</span>
+        </div>
+      </div>
+    {%- endfor -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Gen Z Grid",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Grid Tile",
+      "limit": 5,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gen Z Grid",
+      "blocks": [
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" }
+      ]
+    }
+  ]
+}
+{% endschema %}

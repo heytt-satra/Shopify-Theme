@@ -1,0 +1,41 @@
+<section class="final-cta" data-section="home-final-cta">
+  <div class="final-cta__left">
+    <h2 class="final-cta__title">{{ section.settings.heading | default: 'Join the Palace' }}</h2>
+    {%- if section.settings.subtext != blank -%}
+      <p class="final-cta__sub">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+    {%- if section.settings.cta_label != blank -%}
+      <a
+        href="{{ section.settings.cta_url | default: '/collections/all' }}"
+        class="btn btn--primary btn--magnetic"
+      >
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
+  </div>
+  <div class="final-cta__right">
+    {%- if section.settings.image != blank -%}
+      {% render 'image-responsive',
+        image: section.settings.image,
+        class: 'final-cta__image',
+        sizes: '50vw'
+      %}
+    {%- else -%}
+      {% render 'jewelry-fallback-image', class: 'final-cta__image', index: 5, loading: 'lazy' %}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Final CTA",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Join the Palace" },
+    { "type": "text", "id": "subtext", "label": "Subtext" },
+    { "type": "text", "id": "cta_label", "label": "CTA Label", "default": "EXPLORE THE COLLECTION" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" },
+    { "type": "image_picker", "id": "image", "label": "Right Image" }
+  ],
+  "presets": [{ "name": "Final CTA" }]
+}
+{% endschema %}

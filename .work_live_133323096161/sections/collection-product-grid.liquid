@@ -1,0 +1,21 @@
+<section class="collection-grid" data-section="collection-product-grid">
+  <div class="collection-grid__items" id="collection-products">
+    {%- paginate collection.products by 12 -%}
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+
+      {%- if paginate.next -%}
+        <div class="collection-grid__pagination-data" data-next-url="{{ paginate.next.url }}" style="display:none;"></div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [],
+  "presets": [{ "name": "Product Grid" }]
+}
+{% endschema %}

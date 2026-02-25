@@ -1,0 +1,80 @@
+<section class="timeline" data-section="about-timeline">
+  <div class="timeline__ambient timeline__ambient--one" aria-hidden="true"></div>
+  <div class="timeline__ambient timeline__ambient--two" aria-hidden="true"></div>
+  <div class="timeline__ambient timeline__ambient--three" aria-hidden="true"></div>
+
+  <div class="timeline__container container">
+    {%- if section.settings.label != blank -%}
+      <span class="timeline__label">{{ section.settings.label }}</span>
+    {%- endif -%}
+
+    <div class="timeline__rail" aria-hidden="true">
+      <span class="timeline__line"></span>
+      <span class="timeline__progress"></span>
+    </div>
+
+    <div class="timeline__stack">
+      {%- for block in section.blocks -%}
+        {%- assign side_class = 'timeline__item--left' -%}
+        {%- assign side_mod = forloop.index0 | modulo: 2 -%}
+        {%- if side_mod == 1 -%}
+          {%- assign side_class = 'timeline__item--right' -%}
+        {%- endif -%}
+
+        <article class="timeline__item {{ side_class }}" {{ block.shopify_attributes }}>
+          <span class="timeline__dot" aria-hidden="true"></span>
+
+          <div class="timeline__card">
+            <span class="timeline__year">{{ block.settings.year }}</span>
+            <div class="timeline__divider"></div>
+            <p class="timeline__desc">{{ block.settings.description }}</p>
+
+            <div class="timeline__card-image">
+              {%- if block.settings.image != blank -%}
+                {% render 'image-responsive',
+                  image: block.settings.image,
+                  class: 'timeline__img',
+                  sizes: '(max-width: 991px) 90vw, 460px'
+                %}
+              {%- else -%}
+                {% render 'jewelry-fallback-image', class: 'timeline__img', index: forloop.index, loading: 'lazy' %}
+              {%- endif -%}
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Timeline",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section Label", "default": "OUR JOURNEY" }
+  ],
+  "blocks": [
+    {
+      "type": "milestone",
+      "name": "Milestone",
+      "settings": [
+        { "type": "text", "id": "year", "label": "Year", "default": "2020" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Founded in Jaipur with a single vision: make silver the standard of stying." },
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline",
+      "blocks": [
+        { "type": "milestone", "settings": { "year": "2020", "description": "The story begins in a Jaipur atelier, where a single collection meets obsessive design." } },
+        { "type": "milestone", "settings": { "year": "2021", "description": "First digital-first launch. A curated generation discovers silver worth wearing." } },
+        { "type": "milestone", "settings": { "year": "2022", "description": "Global expansion. The Serpent Collection drops and sells out in 48 hours." } },
+        { "type": "milestone", "settings": { "year": "2023", "description": "The manifesto goes viral. Silver becomes a movement, not just metal." } },
+        { "type": "milestone", "settings": { "year": "2024", "description": "Palace stores open. Digital meets physical in an immersive retail experience." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

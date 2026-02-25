@@ -1,0 +1,38 @@
+<section class="editorial-break editorial-break--collection" data-section="collection-editorial-break">
+  <div class="editorial-break__image-wrap">
+    {%- if section.settings.image != blank -%}
+      {% render 'image-responsive',
+        image: section.settings.image,
+        class: 'editorial-break__image',
+        sizes: '100vw'
+      %}
+    {%- else -%}
+      {% render 'jewelry-fallback-image', class: 'editorial-break__image', index: 3, loading: 'lazy' %}
+    {%- endif -%}
+  </div>
+  <div class="editorial-break__content">
+    <h2 class="editorial-break__title">
+      <span class="line--mask"><span class="line--mask__inner">{{ section.settings.heading_line_1 | default: 'SILVER LININGS' }}</span></span>
+    </h2>
+    {%- if section.settings.subtext != blank -%}
+      <p class="editorial-break__sub">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+    {%- if section.settings.cta_label != blank -%}
+      <a href="{{ section.settings.cta_url }}" class="btn btn--outline">{{ section.settings.cta_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Break",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background Image" },
+    { "type": "text", "id": "heading_line_1", "label": "Heading", "default": "SILVER LININGS" },
+    { "type": "text", "id": "subtext", "label": "Subtext" },
+    { "type": "text", "id": "cta_label", "label": "CTA Label", "default": "DISCOVER MORE" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" }
+  ],
+  "presets": [{ "name": "Collection Break" }]
+}
+{% endschema %}

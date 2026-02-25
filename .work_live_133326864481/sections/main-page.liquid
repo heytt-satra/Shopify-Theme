@@ -1,0 +1,27 @@
+{%- if page.handle == 'about' -%}
+  {% render 'about-page-fallback' %}
+{%- else -%}
+  <section class="main-page" data-section="main-page">
+    <div class="container main-page__container">
+      <header class="main-page__header">
+        <h1 class="main-page__title">{{ page.title }}</h1>
+      </header>
+
+      <div class="main-page__content rte">
+        {{ page.content }}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Main Page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main Page"
+    }
+  ]
+}
+{% endschema %}

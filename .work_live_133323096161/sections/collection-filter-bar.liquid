@@ -1,0 +1,44 @@
+<section class="filter-bar" data-section="collection-filter-bar">
+  <div class="filter-bar__chips">
+    <button class="filter-chip filter-chip--active" data-filter="all" type="button">ALL</button>
+    {%- for block in section.blocks -%}
+      <button
+        class="filter-chip"
+        data-filter="{{ block.settings.category_handle | handleize }}"
+        type="button"
+        {{ block.shopify_attributes }}
+      >
+        {{ block.settings.label }}
+      </button>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Filter Bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "filter",
+      "name": "Filter Chip",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Rings" },
+        { "type": "text", "id": "category_handle", "label": "Category Handle", "default": "rings" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Filter Bar",
+      "blocks": [
+        { "type": "filter", "settings": { "label": "Rings", "category_handle": "rings" } },
+        { "type": "filter", "settings": { "label": "Necklaces", "category_handle": "necklaces" } },
+        { "type": "filter", "settings": { "label": "Earrings", "category_handle": "earrings" } },
+        { "type": "filter", "settings": { "label": "Bracelets", "category_handle": "bracelets" } },
+        { "type": "filter", "settings": { "label": "Sets", "category_handle": "sets" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

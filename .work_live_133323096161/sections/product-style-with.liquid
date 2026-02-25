@@ -1,0 +1,48 @@
+<section class="style-with" data-section="product-style-with">
+  <div class="style-with__header">
+    <span class="style-with__label">{{ section.settings.label | default: 'STYLE IT WITH' }}</span>
+    <div class="style-with__arrows">
+      <button class="style-with__arrow style-with__arrow--prev" type="button" aria-label="Previous">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <button class="style-with__arrow style-with__arrow--next" type="button" aria-label="Next">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="9 6 15 12 9 18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="style-with__track">
+    {%- assign style_collection = collections[section.settings.collection] -%}
+    {%- if style_collection != blank -%}
+      {%- for product in style_collection.products limit: 6 -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..6) -%}
+        <article class="product-card">
+          <div class="product-card__image-wrap">
+            {% render 'jewelry-fallback-image', class: 'product-card__image', index: i, loading: 'lazy' %}
+          </div>
+          <div class="product-card__info">
+            <span class="product-card__title">Sample Product {{ i }}</span>
+            <span class="product-card__price">₹4,500</span>
+          </div>
+        </article>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Style It With",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section Label", "default": "STYLE IT WITH" },
+    { "type": "collection", "id": "collection", "label": "Complementary Collection" }
+  ],
+  "presets": [{ "name": "Style It With" }]
+}
+{% endschema %}

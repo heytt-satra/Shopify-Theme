@@ -1,0 +1,127 @@
+<section class="product-panel" data-section="product-panel">
+  {%- comment -%} Breadcrumbs {%- endcomment -%}
+  <nav class="product-panel__breadcrumb" aria-label="Breadcrumb">
+    <a href="/">HOME</a>
+    <span>/</span>
+    {%- if collection -%}
+      <a href="{{ collection.url }}">{{ collection.title | upcase }}</a>
+      <span>/</span>
+    {%- endif -%}
+    <span>{{ product.type | upcase }}</span>
+  </nav>
+
+  {%- comment -%} Collection Tag {%- endcomment -%}
+  {%- if product.metafields.sp.collection_tag != blank -%}
+    <span class="product-panel__tag">{{ product.metafields.sp.collection_tag }}</span>
+  {%- endif -%}
+
+  {%- comment -%} Title {%- endcomment -%}
+  <h1 class="product-panel__title">{{ product.title }}</h1>
+
+  {%- comment -%} Price + Badges {%- endcomment -%}
+  <div class="product-panel__price-row">
+    <span class="product-panel__price" id="product-price">
+      {{ product.selected_or_first_available_variant.price | money }}
+    </span>
+    <div class="product-panel__badges">
+      {%- if product.metafields.sp.material != blank -%}
+        <span class="product-panel__badge">{{ product.metafields.sp.material }}</span>
+      {%- endif -%}
+      <span class="product-panel__badge">HANDCRAFTED</span>
+    </div>
+  </div>
+
+  {%- comment -%} Description {%- endcomment -%}
+  {%- if product.description != blank -%}
+    <div class="product-panel__desc">{{ product.description }}</div>
+  {%- endif -%}
+
+  {%- comment -%} Variant Selector {%- endcomment -%}
+  {%- if product.variants.size > 1 -%}
+    <div class="product-panel__variants">
+      <span class="product-panel__variants-label">
+        {{ product.options.first | upcase }}
+      </span>
+      <div class="product-panel__variants-row">
+        {%- for variant in product.variants -%}
+          <button
+            class="variant-btn{% if variant == product.selected_or_first_available_variant %} variant-btn--active{% endif %}{% unless variant.available %} variant-btn--unavailable{% endunless %}"
+            data-variant-id="{{ variant.id }}"
+            data-price="{{ variant.price | money }}"
+            type="button"
+            {% unless variant.available %}disabled{% endunless %}
+          >
+            {{ variant.title }}
+          </button>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Add to Cart {%- endcomment -%}
+  <form id="product-form">
+    <input type="hidden" name="id" id="product-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
+    {%- if product.selected_or_first_available_variant.available -%}
+      <button
+        type="submit"
+        class="btn--atc btn--magnetic"
+        data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      >
+        ADD TO CART
+      </button>
+    {%- else -%}
+      <button type="button" class="btn--atc btn--atc--soldout" disabled>
+        SOLD OUT
+      </button>
+    {%- endif -%}
+  </form>
+
+  {%- comment -%} Wishlist {%- endcomment -%}
+  <button class="product-panel__wishlist" type="button">
+    ADD TO WISHLIST
+  </button>
+
+  {%- comment -%} Accordions {%- endcomment -%}
+  <div class="product-panel__accordions">
+    <div class="accordion">
+      <button class="accordion__header" type="button">
+        <span>PRODUCT DETAILS</span>
+        <span class="accordion__icon">+</span>
+      </button>
+      <div class="accordion__content">
+        <div class="accordion__body">
+          {%- if product.description != blank -%}
+            {{ product.description }}
+          {%- else -%}
+            <p>Material: 925 Sterling Silver</p>
+            <p>Finish: Oxidized</p>
+            <p>Made in Jaipur, India</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion__header" type="button">
+        <span>SHIPPING & RETURNS</span>
+        <span class="accordion__icon">+</span>
+      </button>
+      <div class="accordion__content">
+        <div class="accordion__body">
+          <p>Free shipping on orders over ₹5,000.</p>
+          <p>Domestic delivery: 2-3 business days via DHL Express.</p>
+          <p>International: 5-7 business days.</p>
+          <p>14-day returns. Items must be unworn with tags attached.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Panel",
+  "settings": [],
+  "presets": [{ "name": "Product Panel" }]
+}
+{% endschema %}

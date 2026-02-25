@@ -1,0 +1,73 @@
+/* ============================================================
+   SWARNA PALACE — Button Component Styles
+   ============================================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--btn-radius);
+    padding: 1rem 2.5rem;
+    transition: all var(--dur-fast) var(--ease-primary);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Primary — Gold fill */
+.btn--primary {
+    background: var(--accent-gold);
+    color: var(--text-dark);
+}
+
+.btn--primary:hover {
+    background: #b8963e;
+}
+
+/* Secondary — Dark fill */
+.btn--secondary {
+    background: var(--text-dark);
+    color: var(--text-primary);
+}
+
+.btn--secondary:hover {
+    background: var(--accent-gold);
+    color: var(--text-dark);
+}
+
+/* Outline — Transparent with border */
+.btn--outline {
+    background: transparent;
+    border: 1px solid var(--ui-silver);
+    color: var(--ui-silver);
+}
+
+.btn--outline:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+/* Error state */
+.btn--error {
+    background: #c0392b;
+    color: #fff;
+    border-color: #c0392b;
+}
+
+/* Magnetic — applied alongside other modifiers */
+.btn--magnetic {
+    will-change: transform;
+}
+
+/* Disabled state */
+.btn:disabled,
+.btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}

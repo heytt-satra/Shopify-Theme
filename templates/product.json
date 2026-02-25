@@ -1,0 +1,21 @@
+{
+    "sections": {
+        "product-gallery": {
+            "type": "product-gallery",
+            "settings": {}
+        },
+        "product-panel": {
+            "type": "product-panel",
+            "settings": {}
+        },
+        "product-style-with": {
+            "type": "product-style-with",
+            "settings": {}
+        }
+    },
+    "order": [
+        "product-gallery",
+        "product-panel",
+        "product-style-with"
+    ]
+}

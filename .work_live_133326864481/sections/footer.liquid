@@ -1,0 +1,207 @@
+<footer class="footer" data-section="footer">
+  {%- assign about_page_url = '' -%}
+  {%- if pages['about'] != blank -%}
+    {%- assign about_page_url = pages['about'].url -%}
+  {%- elsif pages['about-us'] != blank -%}
+    {%- assign about_page_url = pages['about-us'].url -%}
+  {%- elsif pages['our-story'] != blank -%}
+    {%- assign about_page_url = pages['our-story'].url -%}
+  {%- elsif pages['story'] != blank -%}
+    {%- assign about_page_url = pages['story'].url -%}
+  {%- elsif pages['company'] != blank -%}
+    {%- assign about_page_url = pages['company'].url -%}
+  {%- endif -%}
+  {%- assign contact_page_url = '' -%}
+  {%- if pages['contact'] != blank -%}
+    {%- assign contact_page_url = pages['contact'].url -%}
+  {%- elsif pages['contact-us'] != blank -%}
+    {%- assign contact_page_url = pages['contact-us'].url -%}
+  {%- elsif pages['get-in-touch'] != blank -%}
+    {%- assign contact_page_url = pages['get-in-touch'].url -%}
+  {%- elsif pages['support'] != blank -%}
+    {%- assign contact_page_url = pages['support'].url -%}
+  {%- endif -%}
+  {%- if contact_page_url == blank -%}
+    {%- assign contact_page_url = '/pages/contact' -%}
+  {%- endif -%}
+
+  {%- if about_page_url == blank -%}
+    {%- if contact_page_url != blank -%}
+      {%- assign about_page_url = contact_page_url -%}
+    {%- else -%}
+      {%- assign about_page_url = '/collections' -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- assign footer_contact_phone = section.settings.contact_phone | default: '+91 81080 71223' -%}
+  {%- assign footer_contact_phone_href = footer_contact_phone | strip | remove: ' ' | remove: '-' | remove: '(' | remove: ')' -%}
+  {%- assign footer_contact_address = section.settings.contact_address | default: 'BLDG NO 3, SKYLINE OASIS, Shop 5, Premier Road, Khalai Village, Vidyavihar West, Vidyavihar, Mumbai, Maharashtra 400086' -%}
+  {%- assign footer_contact_map_url = section.settings.contact_map_url | default: 'https://share.google/Ex537zO4dbWvjtw6p' -%}
+
+  <div class="container">
+    <div class="footer__grid">
+      {%- comment -%} Brand Column {%- endcomment -%}
+      <div class="footer__col">
+        <div class="footer__brand-name">{{ section.settings.brand_name | default: shop.name }}</div>
+        <p class="footer__brand-desc">{{ section.settings.brand_description | default: "Crafting the new era of silver. Born out of rebellion, refined by obsession." }}</p>
+        <div class="footer__contact">
+          <a href="tel:{{ footer_contact_phone_href }}" class="footer__contact-phone">{{ footer_contact_phone }}</a>
+          <address class="footer__contact-address">{{ footer_contact_address }}</address>
+          <a href="{{ footer_contact_map_url }}" class="footer__contact-map" target="_blank" rel="noopener">View on Map</a>
+        </div>
+        <div class="footer__social">
+          {%- if section.settings.instagram_url != blank -%}
+            <a href="{{ section.settings.instagram_url }}" class="footer__social-link" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.twitter_url != blank -%}
+            <a href="{{ section.settings.twitter_url }}" class="footer__social-link" aria-label="Twitter" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.pinterest_url != blank -%}
+            <a href="{{ section.settings.pinterest_url }}" class="footer__social-link" aria-label="Pinterest" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.182-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.425 1.808-2.425.853 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.807 1.48 1.807 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.177-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.745 2.282a.3.3 0 01.069.288l-.278 1.133c-.044.183-.145.222-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.527-2.291-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Shop Links {%- endcomment -%}
+      <div class="footer__col">
+        <div class="footer__heading">Shop</div>
+        {%- assign has_shop_links = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'shop_link' -%}
+            {%- assign has_shop_links = true -%}
+            <a href="{{ block.settings.url }}" class="footer__link" {{ block.shopify_attributes }}>
+              {{ block.settings.label }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- unless has_shop_links -%}
+          <a href="/collections/all" class="footer__link">New Arrivals</a>
+          <a href="/collections" class="footer__link">Best Sellers</a>
+          <a href="/collections/rings" class="footer__link">Rings</a>
+          <a href="/collections/chains" class="footer__link">Chains</a>
+        {%- endunless -%}
+      </div>
+
+      {%- comment -%} Company Links {%- endcomment -%}
+      <div class="footer__col">
+        <div class="footer__heading">Company</div>
+        {%- assign has_company_links = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'company_link' -%}
+            {%- assign has_company_links = true -%}
+            {%- assign company_label = block.settings.label | strip | downcase -%}
+            {%- assign company_url = block.settings.url | default: '' -%}
+
+            {%- if company_label contains 'about' or company_label contains 'story' or company_label contains 'company' -%}
+              {%- if company_url == blank or company_url contains '/search' or company_url == '/pages/about' or company_url == '/pages/about-us' -%}
+                {%- assign company_url = about_page_url -%}
+              {%- endif -%}
+            {%- elsif company_label contains 'contact' -%}
+              {%- if company_url == blank or company_url contains '/search' or company_url == '/pages/contact-us' -%}
+                {%- assign company_url = contact_page_url -%}
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if company_url == blank -%}
+              {%- assign company_url = '#' -%}
+            {%- endif -%}
+
+            <a href="{{ company_url }}" class="footer__link" {{ block.shopify_attributes }}>
+              {{ block.settings.label }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- unless has_company_links -%}
+          <a href="{{ about_page_url }}" class="footer__link">Our Story</a>
+          <a href="{{ contact_page_url }}" class="footer__link">Contact</a>
+          <a href="/policies/shipping-policy" class="footer__link">Shipping & Returns</a>
+        {%- endunless -%}
+      </div>
+
+      {%- comment -%} Newsletter {%- endcomment -%}
+      <div class="footer__col">
+        <div class="footer__heading">Stay Updated</div>
+        <p class="footer__newsletter-text">{{ section.settings.newsletter_text | default: "Subscribe for exclusive drops, early access, and 10% off your first order." }}</p>
+        {%- form 'customer', id: 'footer-newsletter' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="footer__newsletter-form">
+            <input
+              type="email"
+              name="contact[email]"
+              class="footer__newsletter-input"
+              placeholder="your@email.com"
+              required
+              aria-label="Email address"
+            >
+            <button type="submit" class="footer__newsletter-btn">Join</button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span class="footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+      <div class="footer__legal">
+        <a href="/policies/privacy-policy" class="footer__legal-link">Privacy Policy</a>
+        <a href="/policies/terms-of-service" class="footer__legal-link">Terms of Service</a>
+        <a href="/policies/shipping-policy" class="footer__legal-link">Shipping Info</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "brand_name", "label": "Brand Name", "default": "Swarna Palace" },
+    { "type": "textarea", "id": "brand_description", "label": "Brand Description", "default": "Crafting the new era of silver. Born out of rebellion, refined by obsession." },
+    { "type": "text", "id": "contact_phone", "label": "Contact Phone", "default": "+91 81080 71223" },
+    { "type": "textarea", "id": "contact_address", "label": "Contact Address", "default": "BLDG NO 3, SKYLINE OASIS, Shop 5, Premier Road, Khalai Village, Vidyavihar West, Vidyavihar, Mumbai, Maharashtra 400086" },
+    { "type": "url", "id": "contact_map_url", "label": "Contact Map URL" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram URL" },
+    { "type": "url", "id": "twitter_url", "label": "Twitter / X URL" },
+    { "type": "url", "id": "pinterest_url", "label": "Pinterest URL" },
+    { "type": "textarea", "id": "newsletter_text", "label": "Newsletter Text", "default": "Subscribe for exclusive drops, early access, and 10% off your first order." }
+  ],
+  "blocks": [
+    {
+      "type": "shop_link",
+      "name": "Shop Link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "New Arrivals" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    },
+    {
+      "type": "company_link",
+      "name": "Company Link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Our Story" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "shop_link", "settings": { "label": "New Arrivals" } },
+        { "type": "shop_link", "settings": { "label": "Best Sellers" } },
+        { "type": "shop_link", "settings": { "label": "Rings" } },
+        { "type": "shop_link", "settings": { "label": "Chains" } },
+        { "type": "shop_link", "settings": { "label": "Size Guide" } },
+        { "type": "company_link", "settings": { "label": "Our Story" } },
+        { "type": "company_link", "settings": { "label": "Sustainability" } },
+        { "type": "company_link", "settings": { "label": "Shipping & Returns" } },
+        { "type": "company_link", "settings": { "label": "Contact" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

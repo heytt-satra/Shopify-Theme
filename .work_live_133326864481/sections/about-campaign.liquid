@@ -1,0 +1,47 @@
+<section class="campaign" data-section="about-campaign">
+  <div class="campaign__image-wrap">
+    {%- if section.settings.image != blank -%}
+      {% render 'image-responsive',
+        image: section.settings.image,
+        class: 'campaign__image',
+        sizes: '100vw'
+      %}
+    {%- else -%}
+      {% render 'jewelry-fallback-image', class: 'campaign__image', index: 1, loading: 'lazy' %}
+    {%- endif -%}
+  </div>
+  <div class="campaign__content">
+    <span class="campaign__label">{{ section.settings.label | default: 'LATEST CAMPAIGN' }}</span>
+    <h2 class="campaign__title">
+      {{ section.settings.headline_1 | default: "The 'Midnight'" }}<br>
+      {{ section.settings.headline_2 | default: "Collection" }}
+    </h2>
+    {%- if section.settings.subtext != blank -%}
+      <p class="campaign__sub">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+    {%- if section.settings.link_text != blank -%}
+      <a href="{{ section.settings.link_url }}" class="campaign__link">
+        {{ section.settings.link_text }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Campaign",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Campaign Image" },
+    { "type": "text", "id": "label", "label": "Label", "default": "LATEST CAMPAIGN" },
+    { "type": "text", "id": "headline_1", "label": "Headline Line 1", "default": "The 'Midnight'" },
+    { "type": "text", "id": "headline_2", "label": "Headline Line 2", "default": "Collection" },
+    { "type": "text", "id": "subtext", "label": "Subtext" },
+    { "type": "text", "id": "link_text", "label": "Link Text", "default": "EXPLORE COLLECTION" },
+    { "type": "url", "id": "link_url", "label": "Link URL" }
+  ],
+  "presets": [{ "name": "Campaign" }]
+}
+{% endschema %}

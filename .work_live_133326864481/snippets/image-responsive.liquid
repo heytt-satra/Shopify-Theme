@@ -1,0 +1,26 @@
+{%- comment -%}
+  Swarna Palace - Responsive Image Snippet
+  Accepts: image, class (string), sizes (string), loading (string, default "lazy")
+{%- endcomment -%}
+
+{%- if image != blank -%}
+  {%- assign responsive_sizes = sizes | default: '(max-width: 767px) 100vw, 50vw' -%}
+  <img
+    {% if class %}class="{{ class }}"{% endif %}
+    src="{{ image | image_url: width: 1800 }}"
+    srcset="{{ image | image_url: width: 480 }} 480w,
+            {{ image | image_url: width: 768 }} 768w,
+            {{ image | image_url: width: 1024 }} 1024w,
+            {{ image | image_url: width: 1440 }} 1440w,
+            {{ image | image_url: width: 1800 }} 1800w,
+            {{ image | image_url: width: 2400 }} 2400w,
+            {{ image | image_url: width: 3200 }} 3200w"
+    sizes="{{ responsive_sizes }}"
+    alt="{{ image.alt | escape | default: '' }}"
+    width="{{ image.width }}"
+    height="{{ image.height }}"
+    loading="{{ loading | default: 'lazy' }}"
+    fetchpriority="{{ fetchpriority | default: 'auto' }}"
+    decoding="async"
+  >
+{%- endif -%}

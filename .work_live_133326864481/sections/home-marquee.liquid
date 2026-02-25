@@ -1,0 +1,24 @@
+<section class="marquee" data-section="home-marquee">
+  <div class="marquee__track" aria-hidden="true">
+    {%- assign marquee_text = section.settings.marquee_text | default: 'NO EXCESS SILVER  ·  ARTISAN SILVER  ·  MADE RAW  ·  925 SILVER  ·  WEAR THE SILENCE  ·' -%}
+    <span class="marquee__text">{{ marquee_text }}</span>
+    <span class="marquee__text">{{ marquee_text }}</span>
+    <span class="marquee__text">{{ marquee_text }}</span>
+    <span class="marquee__text">{{ marquee_text }}</span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Marquee",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "marquee_text",
+      "label": "Marquee Text",
+      "default": "NO EXCESS SILVER  ·  ARTISAN SILVER  ·  MADE RAW  ·  925 SILVER  ·  WEAR THE SILENCE  ·"
+    }
+  ],
+  "presets": [{ "name": "Home Marquee" }]
+}
+{% endschema %}

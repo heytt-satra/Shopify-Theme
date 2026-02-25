@@ -1,0 +1,84 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "collection-header": {
+            "type": "collection-header",
+            "settings": {}
+        },
+        "collection-filter-bar": {
+            "type": "collection-filter-bar",
+            "settings": {},
+            "blocks": {
+                "f_1": {
+                    "type": "filter",
+                    "settings": {
+                        "label": "Rings",
+                        "category_handle": "rings"
+                    }
+                },
+                "f_2": {
+                    "type": "filter",
+                    "settings": {
+                        "label": "Necklaces",
+                        "category_handle": "necklaces"
+                    }
+                },
+                "f_3": {
+                    "type": "filter",
+                    "settings": {
+                        "label": "Earrings",
+                        "category_handle": "earrings"
+                    }
+                },
+                "f_4": {
+                    "type": "filter",
+                    "settings": {
+                        "label": "Bracelets",
+                        "category_handle": "bracelets"
+                    }
+                },
+                "f_5": {
+                    "type": "filter",
+                    "settings": {
+                        "label": "Sets",
+                        "category_handle": "sets"
+                    }
+                }
+            },
+            "block_order": [
+                "f_1",
+                "f_2",
+                "f_3",
+                "f_4",
+                "f_5"
+            ]
+        },
+        "collection-product-grid": {
+            "type": "collection-product-grid",
+            "settings": {}
+        },
+        "collection-editorial-break": {
+            "type": "collection-editorial-break",
+            "settings": {}
+        },
+        "collection-load-more": {
+            "type": "collection-load-more",
+            "settings": {}
+        }
+    },
+    "order": [
+        "collection-header",
+        "collection-filter-bar",
+        "collection-product-grid",
+        "collection-editorial-break",
+        "collection-load-more"
+    ]
+}

@@ -1,0 +1,85 @@
+/* ============================================================
+   SWARNA PALACE - Default Page Styles
+   ============================================================ */
+
+.main-page {
+    background: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    padding-top: calc(var(--nav-height) + clamp(2.5rem, 5vw, 4.5rem));
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.main-page__container {
+    max-width: 920px;
+}
+
+.main-page__header {
+    margin-bottom: clamp(1.25rem, 3vw, 2.25rem);
+    border-bottom: 1px solid rgba(19, 25, 54, 0.12);
+    padding-bottom: 1rem;
+}
+
+.main-page__title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-dark);
+    line-height: 1.05;
+}
+
+.main-page__content {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #42465f;
+}
+
+.main-page__content h2,
+.main-page__content h3,
+.main-page__content h4 {
+    color: var(--text-dark);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.main-page__content p,
+.main-page__content ul,
+.main-page__content ol {
+    margin-bottom: 1rem;
+    color: #42465f;
+}
+
+.main-page__content ul,
+.main-page__content ol {
+    padding-left: 1.2rem;
+}
+
+.main-page__content ul {
+    list-style: disc;
+}
+
+.main-page__content ol {
+    list-style: decimal;
+}
+
+.main-page__content a {
+    color: var(--text-dark);
+    text-decoration: underline;
+    text-decoration-color: rgba(19, 25, 54, 0.45);
+    text-underline-offset: 2px;
+}
+
+.main-page__content a:hover {
+    text-decoration-color: var(--accent-gold);
+}
+
+@media (max-width: 991px) {
+    .main-page {
+        padding-top: calc(var(--nav-height) + clamp(1.5rem, 4vw, 2.5rem));
+    }
+
+    .main-page__container {
+        max-width: 100%;
+    }
+}
